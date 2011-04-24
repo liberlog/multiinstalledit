@@ -1018,7 +1018,9 @@ begin
   end;
 
   // load background image
+  {$IFNDEF FPC}
   frmMain.LoadSkinImage(imgInstall.Picture, 'install', True);
+  {$ENDIF}
 
   // Let background image decide form size
   frmInstall.Width := imgInstall.Width;
@@ -1170,8 +1172,10 @@ begin
 
   frmMain.MakeTransparent(frmInstall, imgInstall);
 
+  {$IFNDEF FPC}
   if not trlunpack then
     frmMain.MakeTranslucency(frmInstall.Handle, vtranslucenty);
+  {$ENDIF}
 end;
 
 //////////////////////////////////////////////////////////////////////

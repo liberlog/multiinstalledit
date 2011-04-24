@@ -170,7 +170,7 @@
 //  Treeview show/hide tree lines option added.
 //  ZipMaster upgraded to version 1.78, which means that zip unpacking
 //  of files larger than 2.1 GB (up to 4 GB) now works. Dlls are also smaller.
-//  Improved: Video player component changed (WMP 6.4 ActiveX control).
+//  Improved: Video Player component changed (WMP 6.4 ActiveX control).
 //  New: Title font size (other than main) can now be customized.
 //  Minor bug: Pressing Esc in MsgBox did sometimes not close MsgBox.
 //  Script variable {pwd} added. {pwd} = current archive password .
@@ -543,7 +543,7 @@
 //  Offline browsing. If no 'Data' folder it will
 //  ask for user to insert disc. Searches cd/dvd drives.
 //  Mp3 song looping.
-//  Disable mp3 menu if no sound card (or mp3 player
+//  Disable mp3 menu if no sound card (or mp3 Player
 //  failed for other reason).
 //  Bugfix: Did not show 'Rating' - fixed.
 //  Bugfixes: Misc. smaller bugs.
@@ -646,12 +646,11 @@ interface
 
 uses
 {$IFDEF FPC}
-  LCLType, lresources, LCLIntf, Types, FileUtil,
+  LCLType, lresources, LCLIntf, Types, FileUtil, lmessages,
 {$ELSE}
   Windows, GraphicEX, ZipMstr, OleCtrls,
   JPEG, GifImage, ShellApi,
 {$ENDIF}
-  MediaInterface,
   Messages, SysUtils, Classes,
   Forms, Dialogs, StdCtrls, ExtCtrls,
   ImgList, Controls, Menus,
@@ -660,7 +659,7 @@ uses
 
   FileCtrl, Dynamic_Bass, clipbrd,
   osc_vis, spectrum_vis, CommonTypes, ExtDlgs,
-  SkinButton, Graphics;
+  SkinButton, PasLibVlcPlayerUnit, Graphics;
 
 const
   rvsItalic = 6;
@@ -918,6 +917,7 @@ type
     lblHandle: TLabel;
     imgPicture: TImage;
     imgEmpty: TImage;
+    Player: TPasLibVlcPlayer;
     PopupMenu1: TPopupMenu;
     MusicTimer: TTimer;
     mnuExit: TMenuItem;
@@ -994,15 +994,17 @@ type
     N4: TMenuItem;
     mnuChooseSkin: TMenuItem;
     mnuOrderByTitle: TMenuItem;
-    PanelMP1: TPanel;
 
     procedure SetFonts(const s: string; i: integer);
     function ReadMILine(var MIEof: boolean): string;
     function ReadMILineRT(var MIEof: boolean): string;
     procedure MakeTransparent(frm: TForm; img: TImage);
+    {$IFNDEF FPC}
     procedure MakeTranslucency(hnd: HWND; trlu: byte);
-    function WidthInPixels(dc: HDC; const str: string): integer;
     function UnpackFromResToTemp(const Filename: string): boolean;
+    procedure LoadSkinImage(pic: TPicture; const AName: string; btm: boolean);
+    {$ENDIF}
+    function WidthInPixels(dc: HDC; const str: string): integer;
     procedure UnpackBassDllFromResToTemp(const Filename: string);
     procedure LoadMusicLibrary(autostart: boolean;
       const firstfile: string);
@@ -1015,7 +1017,6 @@ type
     function ExistsSkinImage(const AName: string): boolean;
     procedure LoadSkinImageGif(var gif: TGifImage; const AName: string);
     procedure LoadSkinButton(var img: TImage; var sbtn: TSkinButton; const AName: string; AVisible: boolean);
-    procedure LoadSkinImage(pic: TPicture; const AName: string; btm: boolean);
     procedure LoadIcons(icons: TStringList);
     procedure LoadFont;
     procedure SetDefaultTexts;
@@ -1379,8 +1380,13 @@ uses
   InstallU, MsgboxU, SplashU, DecryptU,  NfoU, UnitUnpack,
    SearchU, ScreenshotU;
 
+{$IFDEF LINUX}
+{$ELSE}
 {$R bass.res} // bass.dll included as bassdll RCDATA
+{$ENDIF}
+{$IFNDEF FPC}
 {$R ZMRes.res} // ZipMaster zip dll
+{$ENDIF}
 //{$R winxp.res} // for delphi 5/6 - use ThemeManager from www.delphi-gems.com
 
 ////////////////////////////////////////////////////////////////////////
@@ -2814,13 +2820,17 @@ end; // LoadSkinImage
 
 procedure TfrmMain.LoadSkinButton(var img: TImage; var sbtn: TSkinButton; const AName: string; AVisible: boolean);
 begin
+  {$IFNDEF FPC}
   LoadSkinImage(sbtn.pic, AName, True);
   LoadSkinImage(sbtn.picMOver, AName + 'Over', True);
+  {$ENDIF}
 
   sbtn.gifMOver := nil; // changin skins will require this to be nil (or old gif could be shown)
   LoadSkinImageGif(sbtn.gifMOver, AName + 'Over');
 
+  {$IFNDEF FPC}
   LoadSkinImage(sbtn.picMDown, AName + 'Down', True);
+  {$ENDIF}
   img.Picture.Assign(sbtn.pic);
   img.Visible := AVisible;
 end;
@@ -3633,28 +3643,14 @@ begin
                 imgEmpty.Visible := False;
               if imgPicture.Visible then
                 imgPicture.Visible := False;
-              if not PanelMP1.Visible then
-                PanelMP1.Visible := True;
-              PanelMP1.BringToFront;
+              if not Player.Visible then
+                Player.Visible := True;
+              Player.BringToFront;
 
-              loadMediaFile(sMusicPlayFilename, PanelMP1.Handle);
-              if MediaStreamAvailable then
-              try
-                if VideoAvailable then
-                begin
-                  Application.ProcessMessages;
-                  setVideoPos(0, 0, PanelMP1.Width, PanelMP1.Height);
-                  Application.ProcessMessages;
-                end
-                else
-                  PanelMP1.Visible:=false;
-                Application.ProcessMessages;
-                playMediaStream;
-              except
-              end;
+              Player.Play(sMusicPlayFilename);
               if Pos('fullscreen', sFlags) > 0 then
               begin
-                setFullScreenVideo(true);
+//                Player.setFullScreenVideo(true);
               end;
             end;
           end;
@@ -3998,7 +3994,7 @@ begin
   filesToDelete := TStringList.Create;
   foldersToDelete := TStringList.Create;
 
-  {$IFDEF DELPHI}
+  {$IFNDEF FPC}
   ZipMaster1.DllDirectory := '><';
   ZipMaster1.Dll_Load := True;
   ZipMaster1.Unattended := True;
@@ -4050,7 +4046,7 @@ begin
   SetDefaultTexts; // load strings
 
   // if os is xp or newer then use 32 bit color images - will also be alpha blended!
-  {$IFDEF DELPHI}
+  {$IFNDEF FPC}
   if XpOrNewer then
     ImageListIcons.Handle := ImageList_Create(32, 32, ILC_COLOR32 or ILC_MASK, 4, 4);
   {$ENDIF}
@@ -4809,7 +4805,7 @@ begin
     else
     begin
       s := Copy(GoWindir, 1,2);
-      {$IFDEF DELPHI}
+      {$IFNDEF FPC}
       if GetDriveType(PChar(s)) = 5 then // 5 = cd/dvd
       begin
         GetTempFileName(PChar(tmpdir), PChar('tmp'), 1, @TempDir);
@@ -5429,7 +5425,7 @@ begin
       end;
     end
 
-    {$IFDEF DELPHI}
+    {$IFNDEF FPC}
     // windows folder
     else if Copy(s, 1,5) = '{win}' then
     begin
@@ -5815,17 +5811,17 @@ begin
   begin
     if InstPath[3] = '\' then
       Delete(InstPath, 1,3);
-    frmInstall.VET.BrowseTo(path[1] + ':\', True, True, False, True);
+    frmInstall.VET.ShellListView.Root := path[1] {$IFDEF WINDOWS}+ ':\'{$ENDIF};
   end
   else
   begin
     if (Length(InstPath) > 1) and (InstPath[1] = '\') then
       Delete(InstPath, 1,1);
-    frmInstall.VET.BrowseTo('C:\', True, True, False, True);
+    frmInstall.VET.ShellListView.Root := {$IFDEF WINDOWS}'C:\'{$ELSE}DirectorySeparator{$ENDIF};
   end;
 
   if (InstPathPre <> '') and (DirectoryExists(InstPathPre)) then
-    frmInstall.VET.BrowseTo(InstPathPre, True, True, False, True);
+    frmInstall.VET.ShellListView.Root := InstPathPre;
   frmInstall.EInstallPath.Text := UpCase(frmInstall.EInstallPath.Text[1]) + ':\' + InstPath;
 end; // SetInstallPath
 
@@ -5886,7 +5882,7 @@ var
   s: string;
 begin
   slDrives := TStringList.Create;
-
+{$IFNDEF FPC}
   r := GetLogicalDriveStrings(SizeOf(Drives), Drives);
   if r = 0 then
     slDrives.Clear // no drives...
@@ -5908,6 +5904,7 @@ begin
       Inc(pDrive, 4);
     end;
   end;
+{$ENDIF}
 end; // ListDrives
 
 ////////////////////////////////////////////////////////////////////////
@@ -5964,7 +5961,7 @@ begin
   iStartPos := 1;
   FoundAt := 0;
   EndPos := Length(AText);
-  iCurrentFontStyle := rvsNormal;
+  iCurrentFontStyle := 0;
   bFontStyleItalic := False;
   bFontStyleUnderline := False;
   bFontStyleBold := False;
@@ -6195,6 +6192,7 @@ begin
           Inc(iStartPos, 4); // Go past </b>
         end;
 
+        {$IFNDEF FPC}
         // set font style
         if (bFontStyleItalic = False) and (bFontStyleUnderline = False) and (bFontStyleBold = False) then
           iCurrentFontStyle := rvsNormal
@@ -6216,6 +6214,7 @@ begin
         end
         else
           iCurrentFontStyle := rvsBold;
+        {$ENDIF}
       end
       else if bIsHr then
       begin
@@ -6239,7 +6238,9 @@ begin
             sHeader := sHeader + AText[iStartPos];
             Inc(iStartPos);
           end;
+          {$IFNDEF FPC}
           RichView.AddText(sHeader, rvsHeading);
+          {$ENDIF}
           Inc(iStartPos, 5); // go past </h1>
         end
         else
@@ -6250,7 +6251,9 @@ begin
             sHeader := sHeader + AText[iStartPos];
             Inc(iStartPos);
           end;
+          {$IFNDEF FPC}
           RichView.AddText(sHeader, rvsSubHeading);
+          {$ENDIF}
           Inc(iStartPos, 5); // go past </h2>
         end;
       end
@@ -6283,7 +6286,7 @@ begin
         end;
         Inc(iStartPos, 10); // go past ':script-->'
         Urls.Add('script:' + sUrl);
-        RichView.AddText('<' + sScriptTitle + '>', rvsJump1);
+        RichView.AddText('<' + sScriptTitle + '>', 0);
       end
       else // urls: www, http:// or ftp://
       begin
@@ -6302,7 +6305,7 @@ begin
           (sUrl[Length(sUrl)] = ',')) then
           Delete(sUrl, Length(sUrl), 1);
         Urls.Add(sUrl);
-        RichView.AddText(sUrl, rvsJump1);
+        RichView.AddText(sUrl, 0);
       end;
 
     end;
@@ -6376,13 +6379,7 @@ end;
 
 procedure TfrmMain.StopVideoPlay;
 begin
-  if MediaStreamAvailable and MediaStreamPlayed then
-  begin
-    stopMediaStream;
-    if getFullScreenVideo then
-      setFullScreenVideo(false);
-    freeMediaStream;
-  end;
+  Player.Pause();
 end;
 
 ////////////////////////////////////////////////////////////////////////
@@ -6455,6 +6452,7 @@ begin
 
     if (resourcefile <> '') and (Trim(sFile) <> '') then
     begin
+      {$IFNDEF FPC}
       if not ZipMaster1.UnzBusy then
       begin
         sCurPic := sFile;
@@ -6465,8 +6463,8 @@ begin
 
         if imgEmpty.Visible then
           imgEmpty.Visible := False;
-        if PanelMP1.Visible then
-          PanelMP1.Visible := False;
+        if Player.Visible then
+          Player.Visible := False;
         if not imgPicture.Visible then
           imgPicture.Visible := True;
 
@@ -6518,8 +6516,8 @@ begin
         iCurPicIdx := no;
         if imgEmpty.Visible then
           imgEmpty.Visible := False;
-        if PanelMP1.Visible then
-          PanelMP1.Visible := False;
+        if Player.Visible then
+          Player.Visible := False;
         if not imgPicture.Visible then
           imgPicture.Visible := True;
         imgPicture.Picture.LoadFromFile(GoWindir + '\' + MoreDirB + sFile);
@@ -6532,27 +6530,28 @@ begin
           imgEmpty.Visible := False;
         if imgPicture.Visible then
           imgPicture.Visible := False;
-        if not PanelMP1.Visible then
-          PanelMP1.Visible := True;
+        if not Player.Visible then
+          Player.Visible := True;
         if IsMusicPlaying then
           mnuMusicPlayStopClick(nil);
 
-        loadMediaFile(GoWindir + '\' + MoreDirB + sFile, PanelMP1.Handle);
+        loadMediaFile(GoWindir + '\' + MoreDirB + sFile, Player.Handle);
         if MediaStreamAvailable then
         try
           if VideoAvailable then
           begin
             Application.ProcessMessages;
-            setVideoPos(0, 0, PanelMP1.Width, PanelMP1.Height);
+            setVideoPos(0, 0, Player.Width, Player.Height);
             Application.ProcessMessages;
           end
           else
-            PanelMP1.Visible:=false;
+            Player.Visible:=false;
           Application.ProcessMessages;
           playMediaStream;
         except
         end;
       end;
+      {$ENDIF}
     end;
 
     if not bStretchToFit and (sCurPic <> '') then
@@ -7233,7 +7232,9 @@ procedure TfrmMain.FormDestroy(Sender: TObject);
 begin
   // Removes the global atom item from the table so it can be run again
   if not secondinstance then
+  {$IFNDEF FPC}
     GlobalDeleteAtom(atom);
+  {$ENDIF}
 end; // FormDestroy
 
 ////////////////////////////////////////////////////////////////////////
@@ -7261,16 +7262,14 @@ end; // ScreenshotPLayClick
 
 procedure TfrmMain.ScreenshotPauseClick(Sender: TObject);
 begin
-  if MediaStreamPlayed then
-    pauseMediaStream;
+  Player.Pause();
 end; // ScreenshotPauseClick
 
 ////////////////////////////////////////////////////////////////////////
 
 procedure TfrmMain.ScreenshotStopClick(Sender: TObject);
 begin
-  if MediaStreamPlayed then
-    stopMediaStream;
+  Player.Pause();
 end; // ScreenshotStopClick
 
 ////////////////////////////////////////////////////////////////////////
@@ -7297,7 +7296,7 @@ end; // LaunchMPClick
 procedure TfrmMain.PopupMenuScreenshotPopup(Sender: TObject);
 begin
 
-  if MediaStreamPlayed then
+  if Player.IsPlay() then
   begin
     ScreenshotPlay.Enabled := False;
     ScreenshotPause.Enabled := True;
@@ -7516,6 +7515,7 @@ end; // imgMinimizeClick
 ////////////////////////////////////////////////////////////////////////
 
 function SHDelete(Path: string): boolean;
+{$IFNDEF FPC}
 var
   FOS: TSHFileOpStruct;
   MemFrom: array[0..max_path] of char;
@@ -7549,6 +7549,9 @@ begin
     SetLastError(0);
   end;
   FindClose(SRec);
+  {$ELSE}
+Begin
+  {$ENDIF}
 end; // SHDelete
 
 ////////////////////////////////////////////////////////////////////////
@@ -7562,7 +7565,7 @@ begin
 
   StopVideoPlay;
 
-  // Unload mp3 player
+  // Unload mp3 Player
   if MusicTimer.Enabled and bBASSDLLLoaded then
   begin
     UnloadMusicLibrary;
@@ -7574,6 +7577,7 @@ begin
   TimerMusicTitleScroller.Enabled := False;
   MusicTimer.Enabled := False;
 
+  {$IFNDEF FPC}
   SkinZipFile.Free;
 
   try
@@ -7602,6 +7606,7 @@ begin
                        200, // uTimeout in miliseconds
                        cResult); // PDWORD_PTR
   end;
+  {$ENDIF}
 
   // delete any temporary files
   try
@@ -7861,6 +7866,7 @@ begin
     raise EConvertError.Create('Not a valid drive ID');
 
   // turn off critical errors
+  {$if defined(windows) and not defined(wince)}
   ErrorMode := SetErrorMode(SEM_FailCriticalErrors);
   try
     // drive 1 = a, 2 = b, 3 = c, etc.
@@ -7872,7 +7878,9 @@ begin
     // Restore old error mode
     SetErrorMode(ErrorMode);
   end;
+  {$endif}
 end;
+
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -7919,10 +7927,11 @@ begin
         Offline := True;
         if (MusicTimer.Enabled) and
           bBASSDLLLoaded and
-          (GetDriveType(PChar(s)) = 5) then // on cd/dvd
+          (pos ('cdrom', ExtractFileDrive(s))>0) then // on cd/dvd
           mnuMusicPlayStopClick(Sender); // Stop music
       end;
 
+      {$IFNDEF FPC}
       if Offline then
       begin
         ListDrives(slDrives, DRIVE_CDROM);
@@ -7943,6 +7952,7 @@ begin
         frmInstall.arcpath := GoWinDir;
         SetCurrentDir(GoWinDir);
       end;
+      {$ENDIF}
 
       // build window title for 'Insert disc' dialog
       if (Trim(lblHandle.Caption) <> '') and (Trim(lblTitle.Caption) <> '') then
@@ -8056,6 +8066,7 @@ begin
               Sleep(1)
             else
             begin // archive AName not empty
+              {$IFNDEF FPC}
               ListDrives(slDrives, DRIVE_CDROM);
               for i := 0 to slDrives.Count - 1 do
               begin
@@ -8079,6 +8090,7 @@ begin
               end
               else
                 doRetry := False;
+              {$ENDIF}
             end;
           end;
         end;
@@ -8168,7 +8180,9 @@ begin
         begin
           Screen.Cursor := crHourGlass;
           Application.CreateForm(TfrmNFO, frmNFO);
+          {$IFNDEF FPC}
           LoadSkinImage(frmNFO.imgNFO.Picture, 'nfo', True);
+          {$ENDIF}
           frmNfo.Width := frmNFO.imgNFO.Width;
           frmNfo.Height := frmNFO.imgNFO.Height;
           frmNFO.mnuNfoSelectAll.Caption:=mnuNoteSelectAll.Caption;
@@ -8176,6 +8190,7 @@ begin
 
           MakeTransparent(frmNFO, frmNFO.imgNFO);
 
+          {$IFNDEF FPC}
           if not trlunpack then
             MakeTranslucency(frmNFO.Handle, vtranslucenty);
 
@@ -8201,6 +8216,7 @@ begin
             else
               Size := NfoFontSize
           end;
+          {$ENDIF}
 
           // copy background of NFO AText from imgNFO
           frmNFO.RichViewNFO.BackgroundBitmap.Width := frmNFO.RichViewNFO.Width;
@@ -8212,7 +8228,9 @@ begin
             frmNFO.RichViewNFO.Left, frmNFO.RichViewNFO.Top,
             // X, Y (source pos)
             SrcCopy);                                             // plain copy
+          {$IFNDEF FPC}
           frmNFO.RichViewNFO.BackgroundStyle := bsNormal;
+          {$ENDIF}
 
           Screen.Cursor := crDefault;
         end;
@@ -8220,6 +8238,7 @@ begin
 
       if frmNFO <> nil then
       begin
+        {$IFNDEF FPC}
         if resourcefile <> '' then
         begin
           ZipMaster1.ZipFileName := resourcefile;
@@ -8235,6 +8254,7 @@ begin
           end
         end
         else
+        {$ENDIF}
         begin
           ChkFile.Enabled:=False;
           btnNfo.Status := 0; // normal
@@ -8245,6 +8265,7 @@ begin
       end
       else
       begin
+        {$IFNDEF FPC}
         if resourcefile <> '' then
         begin
           ZipMaster1.ZipFileName := resourcefile;
@@ -8265,6 +8286,7 @@ begin
             SW_SHOWNORMAL, False)
         end
         else
+        {$ENDIF}
           ExecuteFile('Open', 'notepad', sFile, sDirectory, SW_SHOWNORMAL, False)
       end;
     end
@@ -9091,9 +9113,9 @@ end;
 
 ////////////////////////////////////////////////////////////////////////
 
-function CalcCoords(s : string) : Coord;
+function CalcCoords(s : string) : TPoint;
 var
-  c       : Coord;
+  c       : TPoint;
   I, Code : Integer;
   stemp   : string;
   k       : integer;
@@ -9128,7 +9150,7 @@ end; // CalcCoords
 
 procedure SplitCoords(const Input: string; var X, Y: integer);
 var
- c: Coord;
+ c: TPoint;
 begin
   c := CalcCoords(input);
   X := c.X;
@@ -9139,7 +9161,7 @@ end;
 
 procedure SplitCoordsCtlXY(const Input: string; var Ctl: TControl);
 var
- c: Coord;
+ c: TPoint;
 begin
   c := CalcCoords(input);
   Ctl.Left := c.X;
@@ -9150,7 +9172,7 @@ end;
 
 procedure SplitCoordsCtlSize(const Input: string; var Ctl: TControl);
 var
- c: Coord;
+ c: TPoint;
 begin
   c := CalcCoords(input);
   Ctl.Width := c.X;
@@ -9184,29 +9206,40 @@ type
   pRGBTripleArray = ^TRGBTripleArray;
   TRGBTripleArray = array[0..PIXEL_COUNT_MAX - 1] of TRGBTriple;
 var
-  Row: pRGBTripleArray;
+  {$IFDEF FPC}
+  RowMain,
+  Row    : Integer;
+  {$ELSE}
+  RowMain,
+  Row    : pRGBTripleArray;
+  {$ENDIF}
   x, y: integer;
   trColor: COLORREF;
   ScanlineDelta: integer;
-  RowMain: pRGBTripleArray;
   ScanlineDeltaMain: integer;
 begin
   trColor := StrToInt(transcolor);
+  {$IFDEF FPC}
+  Row := 0;
+  {$ELSE}
   Row := imgPlayer.Picture.Bitmap.ScanLine[0];
-  ScanlineDelta := integer(imgPlayer.Picture.Bitmap.ScanLine[1]) - integer(Row);
+  {$ENDIF}
+  ScanlineDelta := imgPlayer.Picture.Bitmap.Canvas.Pixels[1,0] - imgPlayer.Picture.Bitmap.Canvas.Pixels[Row,0];
+  {$IFDEF FPC}
+  RowMain := 0;
+  {$ELSE}
   RowMain := imgMain.Picture.Bitmap.ScanLine[0];
-  ScanlineDeltaMain := integer(imgMain.Picture.Bitmap.ScanLine[1]) - integer(RowMain);
+  {$ENDIF}
+  ScanlineDeltaMain := imgPlayer.Picture.Bitmap.Canvas.Pixels[1,0] - imgPlayer.Picture.Bitmap.Canvas.Pixels[RowMain,0];
   if imgPlayer.Top > 0 then
     Inc(integer(RowMain), ScanlineDeltaMain * (imgPlayer.Top -1));
 
   for y := 0 to Pred(imgPlayer.Height) do
   begin
     for x := 0 to Pred(imgPlayer.Width) do
-      if RGB(Row[x].rgbtRed, Row[x].rgbtGreen, Row[x].rgbtBlue) = trColor then
+      if imgPlayer.Picture.Bitmap.Canvas.Pixels[Row,x] = trColor then
       begin
-        Row[x].rgbtRed := RowMain[x].rgbtRed;
-        Row[x].rgbtGreen := RowMain[x].rgbtGreen;
-        Row[x].rgbtBlue := RowMain[x].rgbtBlue;
+        imgPlayer.Picture.Bitmap.Canvas.Pixels[Row,x] := imgPlayer.Picture.Bitmap.Canvas.Pixels[RowMain,x];
       end;
 
     Inc(integer(Row), ScanlineDelta); // Goto next row/y
@@ -9248,7 +9281,7 @@ var
   handleshadowlength: integer;
   handleshadowcolor: string;
   handleshadowdir: string;
-  c: Coord;
+  c: TPoint;
   gif: TGifImage;
   picVisBGPic: TPicture;
 begin
@@ -9273,8 +9306,10 @@ begin
   ButtonsTransparent:=True;
   fBold := False;
   fItalic := False;
+  {$IFNDEF FPC}
   RichViewDescr.Alignment := taLeftJustify;
   RichViewNote.Alignment := taLeftJustify;
+  {$ENDIF}
   RichViewNote.Visible := True;
   PaintBoxScroll.Left := 0;
   frmMain.Font.Style := [];
@@ -9303,12 +9338,14 @@ begin
 
 
   // LOAD THE SKIN SETTINGS
+  {$IFNDEF FPC}
   if SkinZipFile = nil then
   begin
     SkinZipFile := TZipMaster.Create(nil);
     SkinZipFile.DllDirectory := '><';
     SkinZipFile.Dll_Load := True;
   end;
+  {$ENDIF}
 
   if FileExists(GoWinDir + '\skin\' + skinname + '\settings.xml') then
   begin
@@ -9322,6 +9359,7 @@ begin
     if FileExists(GoWinDir + '\skin\' + skinname + '.zip') then
       zipfile := GoWinDir + '\skin\' + skinname + '.zip';
 
+    {$IFNDEF FPC}
     if FileExists(zipfile) then
     begin
       SkinZipFile.ZipFileName := zipfile;
@@ -9333,6 +9371,7 @@ begin
       if Stream1 = nil then
         Stream1 := SkinZipFile.ExtractFileToStream('settings.xml');
     end;
+    {$ENDIF}
   end;
 
   if Stream1 =  nil then
@@ -9341,12 +9380,14 @@ begin
     begin
       Inc(SkinLoadTryCount);
       Sleep(5000);
+      {$IFNDEF FPC}
       SkinZipFile := nil;
       LoadSkin(zipfile, skinname);
+      {$ENDIF}
       Exit;
     end;
 
-    MessageBox(Application.DialogHandle,
+    MessageBox(Self.Handle,
       PChar('Unable to load skin ' + SkinName + ' - no "Settings.xml" found!'), PChar('Multi Install'), MB_ICONERROR);
     Application.Terminate;
     Exit;
@@ -9394,18 +9435,22 @@ begin
     else if IsTag(s, 'descr_alignment', tagvalue) then
     begin
       tagvalue := Uppercase(tagvalue);
+      {$IFNDEF FPC}
       if tagvalue = 'CENTER' then
         RichViewDescr.Alignment := taCenter
       else if tagvalue = 'RIGHT' then
         RichViewDescr.Alignment := taRightJustify;
+      {$ENDIF}
     end
     else if IsTag(s, 'note_alignment', tagvalue) then
     begin
       tagvalue := Uppercase(tagvalue);
+      {$IFNDEF FPC}
       if tagvalue = 'CENTER' then
         RichViewNote.Alignment := taCenter
       else if tagvalue = 'RIGHT' then
         RichViewNote.Alignment := taRightJustify;
+      {$ENDIF}
     end
     else if s = '<font>' then
     begin
@@ -9496,22 +9541,22 @@ begin
               SplitCoordsCtlXY(tagvalue, TControl(imgPicture));
               imgEmpty.Left := imgPicture.Left;
               ScreenshotRect.Left := imgPicture.Left;
-              PanelMP1.Left := imgPicture.Left;
+              Player.Left := imgPicture.Left;
 
               imgEmpty.Top := imgPicture.Top;
               ScreenshotRect.Top := imgPicture.Top;
-              PanelMP1.Top := imgPicture.Top;
+              Player.Top := imgPicture.Top;
             end
             else if IsTag(s, 'screenshot_size', tagvalue) then
             begin
               SplitCoordsCtlSize(tagvalue, TControl(imgPicture));
               imgEmpty.Width := imgPicture.Width;
               ScreenshotRect.Right := imgPicture.Width;
-              PanelMP1.Width := imgPicture.Width;
+              Player.Width := imgPicture.Width;
 
               imgEmpty.Height := imgPicture.Height;
               ScreenshotRect.Bottom := imgPicture.Height;
-              PanelMP1.Height := imgPicture.Height;
+              Player.Height := imgPicture.Height;
             end
             else if IsTag(s, 'descr_xy', tagvalue) then
               SplitCoordsCtlXY(tagvalue, TControl(RichViewDescr))
@@ -9765,6 +9810,7 @@ begin
     lblQIText.Font.Size := lblQIText.Font.Size - 1;
 
   // Also update font size for Quick info fields
+  {$IFNDEF FPC}
   mirvstyleQuickInfo.TextStyles[rvsNormal].Size := lblQIText.Font.Size;
   mirvstyleQuickInfo.TextStyles[rvsJump1].Size := lblQIText.Font.Size;
 
@@ -9783,6 +9829,7 @@ begin
     lblMsgInfoBack.Top;
   lblMessage.Left := ((lblMsgInfoBack.Width - lblMessage.Width) div 2)
     + lblMsgInfoBack.Left;
+  {$ENDIF}
 
   // Set transparent property for button images.
   // When not using button images with transparent border
@@ -9815,7 +9862,7 @@ begin
 
   if not ExistsSkinImage('Main') then
   begin
-    MessageBox(Application.DialogHandle,
+    MessageBox(Self.Handle,
       PChar('Image for MAIN form not found!'),
       PChar('Multi Install'),
       MB_ICONERROR);
@@ -9823,7 +9870,9 @@ begin
     Exit;
   end;
 
+  {$IFNDEF FPC}
   LoadSkinImage(imgMain.Picture, 'main', True); // load main background image
+  {$ENDIF}
   Width := imgMain.Width;
   Height := imgMain.Height;
 
@@ -9873,7 +9922,7 @@ begin
     imgMain.Canvas.handle,                         // Source
     RichViewDescr.Left, RichViewDescr.Top,         // X, Y (source pos)
     SrcCopy);                                      // plain copy
-  RichViewDescr.BackgroundStyle := bsNormal;
+  RichViewDescr.BackgroundStyle := bsStretched;
   // BackgroundStyle MUST be assigned after bitmap is created,
   // if not - RichView will not do a full background redraw when scrolling
 
@@ -9888,7 +9937,7 @@ begin
       imgMain.Canvas.handle,                        // Source
       RichViewNote.Left, RichViewNote.Top,          // X, Y (source pos)
       SrcCopy);                                     // plain copy
-    RichViewNote.BackgroundStyle := bsNormal;
+    RichViewNote.BackgroundStyle := bsStretched;
   end;
 
   // Quick info - add background
@@ -9900,7 +9949,7 @@ begin
       imgMain.Canvas.handle,                         // Source
       mirvQuickInfo.Left, mirvQuickInfo.Top,         // X, Y (source pos)
       SrcCopy);                                      // plain copy
-    mirvQuickInfo.BackgroundStyle := bsNormal;
+    mirvQuickInfo.BackgroundStyle := bsStretched;
   end;
 
   MakeTransparent(frmMain, imgMain);
@@ -9921,10 +9970,12 @@ begin
       handleshadowlength);
   end;
 
+  {$IFNDEF FPC}
   if not trlunpack then
     MakeTranslucency(frmMain.Handle, vtranslucenty);
 
   LoadSkinImage(imgEmpty.Picture, 'MainNoImage', False);
+  {$ENDIF}
 
   if ExistsSkinImage('MainMinimize') then
     LoadSkinButton(imgMinimize, btnMinimize, 'MainMinimize', True);
@@ -9982,7 +10033,9 @@ begin
     pbMusicVis.Height := PlayerPosSize.iSpectrumOscHeight;
     pbMusicVis.BringToFront;
 
+    {$IFNDEF FPC}
     LoadSkinImage(imgPlayer.Picture, 'Player', True);
+    {$ENDIF}
     imgPlayer.Visible := True;
     if transcolor <> '' then
     begin
@@ -10213,6 +10266,7 @@ begin
     frmNfo := nil;
   end;
 
+  {$IFNDEF FPC}
   if vtranslucenty <> 255 then
   begin // reset translucency if used
     MakeTranslucency(frmMain.Handle, 255);
@@ -10220,6 +10274,7 @@ begin
     MakeTranslucency(frmUnpack.Handle, 255);
     MakeTranslucency(frmMsgBox.Handle, 255);
   end;
+  {$ENDIF}
 
   frmMain.Visible := False;
 
@@ -10257,6 +10312,7 @@ begin
 
   if resourcefile <> '' then
   begin
+    {$IFNDEF FPC}
     ZipMaster1.ZipFileName := resourcefile;
     ZipMaster1.Password := resourcepwd;
 
@@ -10274,6 +10330,7 @@ begin
         end;
       end;
     end;
+    {$ENDIF}
   end;
 
   SetCurrentDir(GoWinDir);

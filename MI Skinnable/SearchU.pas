@@ -244,7 +244,9 @@ begin
 
 
   // load background image
+  {$IFNDEF FPC}
   frmMain.LoadSkinImage(imgSearchBg.Picture, 'Search', True);
+  {$ENDIF}
 
   // Let background image decide form size
   frmSearch.Width := imgSearchBg.Width;

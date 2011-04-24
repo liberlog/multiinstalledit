@@ -76,7 +76,9 @@ var
 procedure TfrmUnpack.LoadSkin;
 begin
   try
+  {$IFNDEF FPC}
   frmMain.LoadSkinImage(imgUnpack.Picture,'unpack',True);
+  {$ENDIF}
   frmUnpack.Width:=imgUnpack.Width; // Use width from image
   frmUnpack.Height:=imgUnpack.Height; // Use height from image
 
@@ -163,7 +165,9 @@ begin
  }
   frmMain.MakeTransparent(frmUnpack, imgUnpack);
 
+  {$IFNDEF FPC}
   frmMain.MakeTranslucency(frmUnpack.Handle, vtranslucenty);
+  {$ENDIF}
   except
     on E: Exception do ShowMessage(E.Message);
   end;

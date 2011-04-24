@@ -23,10 +23,12 @@ uses
   SearchU in 'SearchU.pas' {frmSearch},
   EnterPasswordU in 'EnterPasswordU.pas' {frmEnterPassword},
   ScreenshotU in 'ScreenshotU.pas', laztransctrls, lazrichview,
-  virtualtreeview_package;
+  virtualtreeview_package, libraries, PasLibVlcPlayer;
 
+{$IFNDEF FPC}
 {$R *.RES}
 {$R ZipMsgUS.res}
+{$ENDIF}
 
 begin
   Application.Initialize;

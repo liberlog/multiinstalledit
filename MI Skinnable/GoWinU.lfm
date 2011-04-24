@@ -487,16 +487,16 @@ object frmMain: TfrmMain
     OnPaintText = VSTreeSortedPaintText
     OnGetImageIndex = VSTreeSortedGetImageIndex
   end
-  object PanelMP1: TPanel
-    Left = 288
-    Height = 177
-    Top = 48
-    Width = 241
+  object Player: TPasLibVlcPlayer
+    Left = 292
+    Height = 193
+    Top = 52
+    Width = 312
     BevelOuter = bvNone
-    Color = clBlack
+    Caption = 'Player'
     ParentColor = False
     TabOrder = 5
-    Visible = False
+    SnapShotFmt = 'png'
   end
   object ChkFile: TTimer
     Enabled = False

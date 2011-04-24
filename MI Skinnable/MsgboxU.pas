@@ -94,7 +94,9 @@ var
 
 procedure TfrmMsgBox.LoadSkin;
 begin
+  {$IFNDEF FPC}
   frmMain.LoadSkinImage(imgMsgBox.Picture, 'msgbox', True);
+  {$ENDIF}
   frmMsgBox.Width := imgMsgBox.Width;
   frmMsgBox.Height := imgMsgBox.Height;
 
@@ -143,8 +145,10 @@ begin
 
   frmMain.MakeTransparent(frmMsgBox, imgMsgBox);
 
+  {$IFNDEF FPC}
   if not trlunpack then
     frmMain.MakeTranslucency(frmMsgBox.Handle, vtranslucenty);
+  {$ENDIF}
 
   // copy background of imgMsgBox to background of NFO textbox
   RichViewMsgBox.BackgroundBitmap.Width := RichViewMsgBox.Width;

@@ -27,31 +27,35 @@
         <LaunchingApplication PathPlusParams="/usr/X11R6/bin/xterm -T 'Lazarus Run Output' -e $(LazarusDir)/tools/runwait.sh $(TargetCmdLine)"/>
       </local>
     </RunParams>
-    <RequiredPackages Count="4">
+    <RequiredPackages Count="5">
       <Item1>
-        <PackageName Value="laztransctrls"/>
+        <PackageName Value="PasLibVlcPlayer"/>
       </Item1>
       <Item2>
-        <PackageName Value="virtualtreeview_package"/>
+        <PackageName Value="laztransctrls"/>
       </Item2>
       <Item3>
-        <PackageName Value="lazrichview"/>
+        <PackageName Value="virtualtreeview_package"/>
       </Item3>
       <Item4>
-        <PackageName Value="LCL"/>
+        <PackageName Value="lazrichview"/>
       </Item4>
+      <Item5>
+        <PackageName Value="LCL"/>
+      </Item5>
     </RequiredPackages>
-    <Units Count="78">
+    <Units Count="89">
       <Unit0>
         <Filename Value="Go.lpr"/>
         <UnitName Value="Go"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="6" Y="6"/>
-        <UsageCount Value="19"/>
+        <CursorPos X="44" Y="34"/>
+        <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit0>
       <Unit1>
         <Filename Value="BRUSHEDT.PAS"/>
@@ -60,7 +64,8 @@
         <WindowIndex Value="0"/>
         <TopLine Value="31"/>
         <CursorPos X="67" Y="53"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="41"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit1>
       <Unit2>
         <Filename Value="CommonTypes.pas"/>
@@ -69,7 +74,8 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="11" Y="11"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="41"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit2>
       <Unit3>
         <Filename Value="DecryptU.pas"/>
@@ -78,21 +84,24 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="DecryptU"/>
-        <EditorIndex Value="12"/>
+        <EditorIndex Value="23"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="5"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="41"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit3>
       <Unit4>
         <Filename Value="dynamic_bass.pas"/>
         <UnitName Value="Dynamic_Bass"/>
+        <EditorIndex Value="13"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1125"/>
-        <CursorPos X="54" Y="1150"/>
+        <TopLine Value="875"/>
+        <CursorPos X="1" Y="898"/>
         <UsageCount Value="14"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit4>
       <Unit5>
         <Filename Value="GoWinU.pas"/>
@@ -102,11 +111,12 @@
         <UnitName Value="GoWinU"/>
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="5796"/>
-        <CursorPos X="17" Y="5818"/>
-        <UsageCount Value="18"/>
+        <TopLine Value="7277"/>
+        <CursorPos X="20" Y="7299"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit5>
       <Unit6>
         <Filename Value="GoWinU.lfm"/>
@@ -127,8 +137,8 @@
         <UnitName Value="LinkScanner"/>
         <TopLine Value="457"/>
         <CursorPos X="1" Y="1"/>
-        <SyntaxHighlighter Value="Delphi"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit8>
       <Unit9>
         <Filename Value="../../../../usr/lib/lazarus/0.9.28.2/examples/address_book/frmmain.pas"/>
@@ -138,8 +148,8 @@
         <UnitName Value="frmmain"/>
         <TopLine Value="147"/>
         <CursorPos X="97" Y="173"/>
-        <SyntaxHighlighter Value="Delphi"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit9>
       <Unit10>
         <Filename Value="../zengl/headers/zglHeader.pas"/>
@@ -147,16 +157,16 @@
         <WindowIndex Value="0"/>
         <TopLine Value="1221"/>
         <CursorPos X="1" Y="1251"/>
-        <SyntaxHighlighter Value="Delphi"/>
         <UsageCount Value="15"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit10>
       <Unit11>
         <Filename Value="../../../../usr/lib/lazarus/0.9.28.2/packager/packagedefs.pas"/>
         <UnitName Value="PackageDefs"/>
         <TopLine Value="2843"/>
         <CursorPos X="19" Y="2863"/>
-        <SyntaxHighlighter Value="Delphi"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit11>
       <Unit12>
         <Filename Value="osc_vis.pas"/>
@@ -165,6 +175,7 @@
         <TopLine Value="1"/>
         <CursorPos X="24" Y="13"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit12>
       <Unit13>
         <Filename Value="spectrum_vis.pas"/>
@@ -173,6 +184,7 @@
         <TopLine Value="1"/>
         <CursorPos X="25" Y="12"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit13>
       <Unit14>
         <Filename Value="SkinButton.pas"/>
@@ -180,6 +192,7 @@
         <TopLine Value="1"/>
         <CursorPos X="24" Y="12"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit14>
       <Unit15>
         <Filename Value="../ManFrames/composants/u_buttons_manage.pas"/>
@@ -209,6 +222,7 @@
         <TopLine Value="53"/>
         <CursorPos X="3" Y="73"/>
         <UsageCount Value="12"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit17>
       <Unit18>
         <Filename Value="../../Lazarus/composants/lazrichview/RV_Save.inc"/>
@@ -216,14 +230,15 @@
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit18>
       <Unit19>
         <Filename Value="../../../../usr/share/fpcsrc/2.4.0/rtl/inc/systemh.inc"/>
         <WindowIndex Value="0"/>
         <TopLine Value="829"/>
         <CursorPos X="11" Y="850"/>
-        <SyntaxHighlighter Value="Delphi"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit19>
       <Unit20>
         <Filename Value="../../Lazarus/composants/richmemo/richmemo.pas"/>
@@ -232,6 +247,7 @@
         <TopLine Value="245"/>
         <CursorPos X="59" Y="269"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit20>
       <Unit21>
         <Filename Value="../../Lazarus/composants/richmemo/wsrichmemo.pas"/>
@@ -240,6 +256,7 @@
         <TopLine Value="62"/>
         <CursorPos X="122" Y="91"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit21>
       <Unit22>
         <Filename Value="C:/lazarus/components/codetools/definetemplates.pas"/>
@@ -248,6 +265,7 @@
         <TopLine Value="1046"/>
         <CursorPos X="29" Y="1056"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit22>
       <Unit23>
         <Filename Value="InstallU.pas"/>
@@ -255,12 +273,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="InstallU"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="7"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="34"/>
-        <CursorPos X="19" Y="56"/>
-        <UsageCount Value="12"/>
+        <TopLine Value="999"/>
+        <CursorPos X="8" Y="1023"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit23>
       <Unit24>
         <Filename Value="UnitUnpack.pas"/>
@@ -268,13 +287,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UnitUnpack"/>
-        <EditorIndex Value="13"/>
+        <EditorIndex Value="24"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="13"/>
-        <UsageCount Value="14"/>
+        <TopLine Value="57"/>
+        <CursorPos X="8" Y="81"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit24>
       <Unit25>
         <Filename Value="UnitUnpack.lfm"/>
@@ -291,6 +310,7 @@
         <TopLine Value="125"/>
         <CursorPos X="1" Y="148"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit26>
       <Unit27>
         <Filename Value="../VirtualShellTools/Source/VirtualScrollbars.pas"/>
@@ -299,6 +319,7 @@
         <TopLine Value="17"/>
         <CursorPos X="1" Y="47"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit27>
       <Unit28>
         <Filename Value="/usr/lib/lazarus/default/lcl/ldocktree.pas"/>
@@ -307,6 +328,7 @@
         <TopLine Value="338"/>
         <CursorPos X="3" Y="358"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit28>
       <Unit29>
         <Filename Value="/usr/lib/lazarus/default/lcl/grids.pas"/>
@@ -315,6 +337,7 @@
         <TopLine Value="21"/>
         <CursorPos X="42" Y="42"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit29>
       <Unit30>
         <Filename Value="/usr/lib/lazarus/default/lcl/graphutil.pp"/>
@@ -323,6 +346,7 @@
         <TopLine Value="61"/>
         <CursorPos X="1" Y="1"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit30>
       <Unit31>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/include/winapih.inc"/>
@@ -345,6 +369,7 @@
         <TopLine Value="1"/>
         <CursorPos X="42" Y="9"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit33>
       <Unit34>
         <Filename Value="../VirtualShellTools/Source/VirtualShellNotifier.pas"/>
@@ -353,6 +378,7 @@
         <TopLine Value="25"/>
         <CursorPos X="19" Y="44"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit34>
       <Unit35>
         <Filename Value="../Common Library/Source/MPCommonObjects.pas"/>
@@ -361,6 +387,7 @@
         <TopLine Value="25"/>
         <CursorPos X="1" Y="40"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit35>
       <Unit36>
         <Filename Value="../Common Library/Source/MPShellTypes.pas"/>
@@ -369,6 +396,7 @@
         <TopLine Value="127"/>
         <CursorPos X="4" Y="145"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit36>
       <Unit37>
         <Filename Value="/usr/lib/lazarus/default/lcl/interfaces/win32/win32uxtheme.pas"/>
@@ -377,6 +405,7 @@
         <TopLine Value="49"/>
         <CursorPos X="53" Y="188"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit37>
       <Unit38>
         <Filename Value="transedt.pas"/>
@@ -385,15 +414,16 @@
         <TopLine Value="132"/>
         <CursorPos X="2" Y="40"/>
         <UsageCount Value="11"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit38>
       <Unit39>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/chart.pp"/>
         <UnitName Value="Chart"/>
-        <EditorIndex Value="11"/>
+        <EditorIndex Value="22"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="28" Y="35"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit39>
       <Unit40>
@@ -431,12 +461,13 @@
       <Unit44>
         <Filename Value="MsgboxU.pas"/>
         <UnitName Value="MsgboxU"/>
-        <EditorIndex Value="24"/>
+        <EditorIndex Value="36"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="14" Y="10"/>
-        <UsageCount Value="14"/>
+        <TopLine Value="75"/>
+        <CursorPos X="8" Y="99"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit44>
       <Unit45>
         <Filename Value="MsgboxU.lfm"/>
@@ -465,61 +496,60 @@
       <Unit48>
         <Filename Value="/usr/lib/lazarus/0.9.30/components/aggpas/src/agg_span_image_filter_rgb.pas"/>
         <UnitName Value="agg_span_image_filter_rgb"/>
-        <EditorIndex Value="22"/>
+        <EditorIndex Value="34"/>
         <WindowIndex Value="0"/>
         <TopLine Value="88"/>
         <CursorPos X="20" Y="108"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit48>
       <Unit49>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/interfaces/gtk2/gtk2proc.inc"/>
-        <EditorIndex Value="23"/>
+        <EditorIndex Value="35"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1710"/>
         <CursorPos X="9" Y="1730"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit49>
       <Unit50>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/graphics.pp"/>
         <UnitName Value="Graphics"/>
-        <EditorIndex Value="20"/>
+        <EditorIndex Value="32"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1120"/>
         <CursorPos X="35" Y="1149"/>
-        <UsageCount Value="14"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit50>
       <Unit51>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/shellctrls.pas"/>
         <UnitName Value="ShellCtrls"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="19"/>
+        <EditorIndex Value="30"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="92"/>
-        <CursorPos X="3" Y="49"/>
-        <UsageCount Value="14"/>
+        <TopLine Value="375"/>
+        <CursorPos X="3" Y="408"/>
+        <UsageCount Value="15"/>
         <Loaded Value="True"/>
       </Unit51>
       <Unit52>
         <Filename Value="/usr/lib/lazarus/0.9.30/ide/ideprocs.pp"/>
         <UnitName Value="IDEProcs"/>
-        <EditorIndex Value="18"/>
+        <EditorIndex Value="29"/>
         <WindowIndex Value="0"/>
         <TopLine Value="232"/>
         <CursorPos X="53" Y="259"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit52>
       <Unit53>
         <Filename Value="/usr/share/fpcsrc/2.4.2/rtl/unix/sysutils.pp"/>
         <UnitName Value="sysutils"/>
-        <EditorIndex Value="17"/>
+        <EditorIndex Value="28"/>
         <WindowIndex Value="0"/>
         <TopLine Value="861"/>
         <CursorPos X="67" Y="893"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit53>
       <Unit54>
@@ -528,23 +558,24 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="SplashU"/>
-        <EditorIndex Value="14"/>
+        <EditorIndex Value="25"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="57" Y="13"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit54>
       <Unit55>
         <Filename Value="EnterPasswordU.pas"/>
         <UnitName Value="EnterPasswordU"/>
-        <EditorIndex Value="16"/>
+        <EditorIndex Value="27"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="12" Y="7"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit55>
       <Unit56>
         <Filename Value="NfoU.pas"/>
@@ -552,13 +583,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="NfoU"/>
-        <EditorIndex Value="15"/>
+        <EditorIndex Value="26"/>
         <WindowIndex Value="0"/>
         <TopLine Value="26"/>
         <CursorPos X="3" Y="26"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit56>
       <Unit57>
         <Filename Value="NfoU.lfm"/>
@@ -580,12 +611,13 @@
         <Filename Value="SearchU.pas"/>
         <HasResources Value="True"/>
         <UnitName Value="SearchU"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="19"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="1"/>
-        <CursorPos X="1" Y="4"/>
-        <UsageCount Value="13"/>
+        <TopLine Value="224"/>
+        <CursorPos X="8" Y="249"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit59>
       <Unit60>
         <Filename Value="SearchU.dfm"/>
@@ -610,15 +642,16 @@
         <TopLine Value="1"/>
         <CursorPos X="9" Y="10"/>
         <UsageCount Value="10"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit62>
       <Unit63>
         <Filename Value="/usr/lib/lazarus/0.9.30/ide/lazarus.pp"/>
         <UnitName Value="Lazarus"/>
-        <EditorIndex Value="10"/>
+        <EditorIndex Value="21"/>
         <WindowIndex Value="0"/>
         <TopLine Value="96"/>
         <CursorPos X="1" Y="130"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit63>
       <Unit64>
@@ -632,12 +665,13 @@
       <Unit65>
         <Filename Value="ScreenshotU.pas"/>
         <UnitName Value="ScreenshotU"/>
-        <EditorIndex Value="9"/>
+        <EditorIndex Value="20"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="3" Y="11"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
       </Unit65>
       <Unit66>
         <Filename Value="/usr/share/fpcsrc/2.4.2/rtl/inc/objpash.inc"/>
@@ -656,11 +690,11 @@
       <Unit68>
         <Filename Value="/usr/lib/lazarus/0.9.30/lcl/lcltype.pp"/>
         <UnitName Value="LCLType"/>
-        <EditorIndex Value="21"/>
+        <EditorIndex Value="33"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1243"/>
         <CursorPos X="38" Y="1272"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit68>
       <Unit69>
@@ -698,174 +732,289 @@
       <Unit73>
         <Filename Value="/usr/lib/lazarus/0.9.30/ide/lazarusmanager.pas"/>
         <UnitName Value="LazarusManager"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="18"/>
         <WindowIndex Value="0"/>
         <TopLine Value="162"/>
         <CursorPos X="23" Y="191"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit73>
       <Unit74>
         <Filename Value="/usr/lib/lazarus/0.9.30/components/filebrowser/frmfilebrowser.pas"/>
         <UnitName Value="frmFileBrowser"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="17"/>
         <WindowIndex Value="0"/>
         <TopLine Value="376"/>
         <CursorPos X="1" Y="380"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit74>
       <Unit75>
         <Filename Value="../../fdtreeview/FDTreeView.pas"/>
         <UnitName Value="FDTreeView"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="16"/>
         <WindowIndex Value="0"/>
         <TopLine Value="1"/>
         <CursorPos X="1" Y="1"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit75>
       <Unit76>
         <Filename Value="/usr/lib/lazarus/0.9.30/components/lazreport/source/lr_utils.pas"/>
         <UnitName Value="LR_Utils"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="15"/>
         <WindowIndex Value="0"/>
         <TopLine Value="470"/>
         <CursorPos X="13" Y="472"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit76>
       <Unit77>
         <Filename Value="MediaInterface.pas"/>
         <UnitName Value="MediaInterface"/>
+        <EditorIndex Value="8"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="87"/>
+        <CursorPos X="15" Y="7"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit77>
+      <Unit78>
+        <Filename Value="/usr/lib/lazarus/0.9.30/lcl/filectrl.pp"/>
+        <UnitName Value="FileCtrl"/>
+        <EditorIndex Value="6"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="196"/>
+        <CursorPos X="1" Y="1"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit78>
+      <Unit79>
+        <Filename Value="/usr/lib/lazarus/0.9.30/lcl/include/fileutil.inc"/>
+        <EditorIndex Value="4"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1519"/>
+        <CursorPos X="1" Y="1541"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit79>
+      <Unit80>
+        <Filename Value="/usr/lib/lazarus/0.9.30/components/codetools/fileprocs.pas"/>
+        <UnitName Value="FileProcs"/>
+        <EditorIndex Value="5"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="131"/>
+        <CursorPos X="27" Y="702"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit80>
+      <Unit81>
+        <Filename Value="/usr/lib/lazarus/0.9.30/components/leakview/leakinfo.pas"/>
+        <UnitName Value="leakinfo"/>
         <EditorIndex Value="3"/>
         <WindowIndex Value="0"/>
+        <TopLine Value="77"/>
+        <CursorPos X="1" Y="77"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit81>
+      <Unit82>
+        <Filename Value="../../../Lazarus/composants/lazrichview/richview.pas"/>
+        <UnitName Value="RichView"/>
+        <EditorIndex Value="2"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="51"/>
+        <CursorPos X="3" Y="73"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit82>
+      <Unit83>
+        <Filename Value="/usr/lib/lazarus/0.9.30/lcl/fileutil.pas"/>
+        <UnitName Value="FileUtil"/>
+        <EditorIndex Value="31"/>
+        <WindowIndex Value="0"/>
         <TopLine Value="1"/>
-        <CursorPos X="15" Y="7"/>
+        <CursorPos X="9" Y="34"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit83>
+      <Unit84>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <UnitName Value="PasLibVlcUnit"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="9"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="4218"/>
+        <CursorPos X="8" Y="4240"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
-      </Unit77>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit84>
+      <Unit85>
+        <Filename Value="libraries.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="libraries"/>
+        <EditorIndex Value="14"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1"/>
+        <CursorPos X="1" Y="10"/>
+        <UsageCount Value="22"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit85>
+      <Unit86>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcPlayerUnit.pas"/>
+        <UnitName Value="PasLibVlcPlayerUnit"/>
+        <EditorIndex Value="10"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="1006"/>
+        <CursorPos X="1" Y="1028"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit86>
+      <Unit87>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcClassUnit.pas"/>
+        <UnitName Value="PasLibVlcClassUnit"/>
+        <EditorIndex Value="11"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="180"/>
+        <CursorPos X="29" Y="206"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="Delphi"/>
+      </Unit87>
+      <Unit88>
+        <Filename Value="/usr/lib/lazarus/0.9.30/examples/dockmanager/package/zoneheader.inc"/>
+        <EditorIndex Value="12"/>
+        <WindowIndex Value="0"/>
+        <TopLine Value="341"/>
+        <CursorPos X="19" Y="363"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit88>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="657" Column="18" TopLine="639"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4172" Column="1" TopLine="4138"/>
       </Position1>
       <Position2>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="3807" Column="8" TopLine="3783"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4175" Column="1" TopLine="4138"/>
       </Position2>
       <Position3>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="3842" Column="12" TopLine="3820"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4178" Column="1" TopLine="4167"/>
       </Position3>
       <Position4>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="3875" Column="8" TopLine="3835"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4181" Column="1" TopLine="4167"/>
       </Position4>
       <Position5>
-        <Filename Value="/usr/lib/lazarus/0.9.30/lcl/shellctrls.pas"/>
-        <Caret Line="87" Column="3" TopLine="87"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4184" Column="1" TopLine="4167"/>
       </Position5>
       <Position6>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="3922" Column="24" TopLine="3911"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4187" Column="1" TopLine="4167"/>
       </Position6>
       <Position7>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="3933" Column="25" TopLine="3911"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4190" Column="1" TopLine="4167"/>
       </Position7>
       <Position8>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="3939" Column="13" TopLine="3915"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4193" Column="1" TopLine="4167"/>
       </Position8>
       <Position9>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="3991" Column="81" TopLine="3969"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4196" Column="1" TopLine="4167"/>
       </Position9>
       <Position10>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="3994" Column="1" TopLine="3979"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4199" Column="1" TopLine="4167"/>
       </Position10>
       <Position11>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="4001" Column="17" TopLine="3979"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4202" Column="1" TopLine="4167"/>
       </Position11>
       <Position12>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="4053" Column="17" TopLine="4032"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4205" Column="1" TopLine="4168"/>
       </Position12>
       <Position13>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="4812" Column="21" TopLine="4790"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4208" Column="1" TopLine="4171"/>
       </Position13>
       <Position14>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="4840" Column="21" TopLine="4818"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4211" Column="1" TopLine="4174"/>
       </Position14>
       <Position15>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="5267" Column="25" TopLine="5249"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4214" Column="1" TopLine="4177"/>
       </Position15>
       <Position16>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="265" Column="1" TopLine="265"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4217" Column="1" TopLine="4180"/>
       </Position16>
       <Position17>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="654" Column="1" TopLine="621"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4220" Column="1" TopLine="4183"/>
       </Position17>
       <Position18>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="1347" Column="8" TopLine="1310"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4223" Column="1" TopLine="4186"/>
       </Position18>
       <Position19>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="1379" Column="1" TopLine="1357"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4226" Column="1" TopLine="4189"/>
       </Position19>
       <Position20>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="5258" Column="37" TopLine="5236"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4229" Column="1" TopLine="4192"/>
       </Position20>
       <Position21>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="5415" Column="36" TopLine="5393"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4232" Column="1" TopLine="4195"/>
       </Position21>
       <Position22>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="5436" Column="12" TopLine="5414"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4235" Column="1" TopLine="4198"/>
       </Position22>
       <Position23>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="6075" Column="13" TopLine="6038"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4238" Column="1" TopLine="4201"/>
       </Position23>
       <Position24>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="5453" Column="10" TopLine="5414"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4110" Column="1" TopLine="4088"/>
       </Position24>
       <Position25>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="5608" Column="5" TopLine="5585"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4112" Column="1" TopLine="4088"/>
       </Position25>
       <Position26>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="5671" Column="64" TopLine="5650"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4834" Column="11" TopLine="4807"/>
       </Position26>
       <Position27>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="8597" Column="34" TopLine="8560"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="1" Column="1" TopLine="1"/>
       </Position27>
       <Position28>
-        <Filename Value="GoWinU.pas"/>
-        <Caret Line="5818" Column="17" TopLine="5796"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="2181" Column="44" TopLine="2170"/>
       </Position28>
       <Position29>
-        <Filename Value="InstallU.pas"/>
-        <Caret Line="56" Column="19" TopLine="34"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcPlayerUnit.pas"/>
+        <Caret Line="1028" Column="1" TopLine="1006"/>
       </Position29>
       <Position30>
-        <Filename Value="/usr/lib/lazarus/0.9.30/lcl/shellctrls.pas"/>
-        <Caret Line="87" Column="34" TopLine="65"/>
+        <Filename Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Caret Line="4121" Column="1" TopLine="4781"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>
@@ -876,6 +1025,7 @@
     </SearchPaths>
     <Parsing>
       <SyntaxOptions>
+        <SyntaxMode Value="Delphi"/>
         <UseAnsiStrings Value="False"/>
       </SyntaxOptions>
     </Parsing>
@@ -884,6 +1034,20 @@
     </Other>
   </CompilerOptions>
   <Debugging>
+    <BreakPoints Count="3">
+      <Item1>
+        <Source Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Line Value="4121"/>
+      </Item1>
+      <Item2>
+        <Source Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Line Value="4110"/>
+      </Item2>
+      <Item3>
+        <Source Value="../../PasLibVlc/source/PasLibVlcUnit.pas"/>
+        <Line Value="4792"/>
+      </Item3>
+    </BreakPoints>
     <Exceptions Count="3">
       <Item1>
         <Name Value="EAbort"/>
