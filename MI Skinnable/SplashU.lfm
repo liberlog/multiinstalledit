@@ -1,0 +1,24 @@
+object frmSplashScreen: TfrmSplashScreen
+  Left = 321
+  Height = 173
+  Top = 248
+  Width = 312
+  BorderStyle = bsNone
+  Caption = 'frmSplashScreen'
+  ClientHeight = 173
+  ClientWidth = 312
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '0.9.30'
+  object ImageSplash: TImage
+    Left = 0
+    Height = 150
+    Top = 0
+    Width = 280
+    AutoSize = True
+  end
+end

@@ -1,0 +1,244 @@
+object frmInstall: TfrmInstall
+  Left = 356
+  Height = 332
+  Top = 253
+  Width = 500
+  BorderStyle = bsNone
+  Caption = 'frmInstall'
+  ClientHeight = 332
+  ClientWidth = 500
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Icon.Data = {
+    3604000000000100020010101000000000002801000026000000202010000000
+    0000E80200004E0100002800000010000000200000000100040000000000C000
+    0000000000000000000000000000000000000000000000008000008000000080
+    800080000000800080008080000080808000C0C0C0000000FF0000FF000000FF
+    FF00FF000000FF00FF00FFFF0000FFFFFF000000000000000000000008873A80
+    0000000FF88732CC60000008F88732C6680000878F872C668600087878872C68
+    AAA007878770082AA2200878780FF01115500551110FF0878780022AA2800878
+    78700AAA86C278878780006866C278F8780000866C23788F88000006CC23788F
+    F000000008A3788000000000000000000000F81F0000E0070000C00300008001
+    0000800100000000000000000000000000000000000000000000000000008001
+    000080010000C0030000E0070000F81F00002800000020000000400000000100
+    0400000000008002000000000000000000001000000000000000000000000000
+    BF0000BF000000BFBF00BF000000BF00BF00BFBF0000C0C0C000808080000000
+    FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00000000000000
+    00000000000000000000000000000000777833AA00000000000000000000077F
+    777833AA7780000000000000000FF7F7777833AA77C860000000000000FFFF7F
+    777833AA78C66600000000000FFFFFF7777838A77C8666600000000077FFFF7F
+    777837A78C66667700000007877FFFF7F77837A7C8666777700000087877FFFF
+    77783AA8C6667777E000008787877FFFF7783AAC866777EEEE000078787877FF
+    7F783A8C6677EEEEBB0007878787877FF7783AC8677EEBBBBAA0087878787877
+    F88888C67EBBBBAAAAA007878787878788000088BBBAAAA33330087878787878
+    80800808333333DDDDD0088888888888800000085D5D5D5D5D5005D5D5D5D5D5
+    800000088888888888800DDDDD3333338080080887878787878003333AAAABBB
+    880000887878787878700AAAAABBBBE76C88888F7787878787800AABBBBEE776
+    8CA3877FF7787878787000BBEEEE7766C8A387F7FF778787870000EEEE777668
+    CAA3877FFFF778787800000E7777666C8AA38777FFFF7787800000077776668C
+    7A73877F7FFFF77870000000776666C87A738777F7FFFF7700000000066668C7
+    7A8387777FFFFFF00000000000666C87AA338777F7FFFF000000000000068C77
+    AA3387777F7FF0000000000000000877AA338777F77000000000000000000000
+    AA33877700000000000000000000000000000000000000000000FFF00FFFFF80
+    01FFFE00007FFC00003FF800001FF000000FE0000007C0000003C00000038000
+    000180000001000000000000000000000000000180000003C0000003C0000001
+    80000000000000000000000000008000000180000001C0000003C0000003E000
+    0007F000000FF800001FFC00003FFE00007FFF8001FFFFF00FFF
+  }
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '0.9.30'
+  object imgInstall: TImage
+    Left = 0
+    Height = 280
+    Top = 0
+    Width = 465
+    AutoSize = True
+    OnMouseDown = imgInstallMouseDown
+  end
+  object lblSpaceAvail: TLabel
+    Left = 120
+    Height = 15
+    Top = 240
+    Width = 75
+    Caption = 'lblSpaceAvail'
+    ParentColor = False
+  end
+  object lblSpaceReq: TLabel
+    Left = 120
+    Height = 15
+    Top = 256
+    Width = 70
+    Caption = 'lblSpaceReq'
+    ParentColor = False
+  end
+  object Label8: TLabel
+    Left = 112
+    Height = 15
+    Top = 256
+    Width = 5
+    Caption = ':'
+    ParentColor = False
+  end
+  object Label7: TLabel
+    Left = 112
+    Height = 15
+    Top = 240
+    Width = 5
+    Caption = ':'
+    ParentColor = False
+  end
+  object lblSpaceReqLabel: TLabel
+    Left = 24
+    Height = 15
+    Top = 256
+    Width = 87
+    Caption = 'Space required'
+    ParentColor = False
+  end
+  object lblSpaceAvailLabel: TLabel
+    Left = 24
+    Height = 15
+    Top = 240
+    Width = 90
+    Caption = 'Space available'
+    ParentColor = False
+  end
+  object imgDesktopIcon: TImage
+    Left = 280
+    Height = 25
+    Top = 81
+    Width = 25
+    OnMouseDown = imgDesktopIconMouseDown
+  end
+  object lblInstallTitle: TLabel
+    Left = 24
+    Height = 24
+    Top = 6
+    Width = 120
+    Caption = 'lblInstallTitle'
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    ParentColor = False
+    ParentFont = False
+    OnMouseDown = imgInstallMouseDown
+  end
+  object lblDekstopIcon: TLabel
+    Left = 311
+    Height = 34
+    Top = 87
+    Width = 130
+    AutoSize = False
+    Caption = 'Add icon to desktop'
+    Font.Color = clWindowText
+    Font.Height = -9
+    Font.Name = 'MS Sans Serif'
+    ParentColor = False
+    ParentFont = False
+    WordWrap = True
+    OnMouseDown = lblDekstopIconMouseDown
+  end
+  object ImageChecked: TImage
+    Left = 292
+    Height = 9
+    Top = 92
+    Width = 9
+    OnMouseDown = lblDekstopIconMouseDown
+    Picture.Data = {
+      07544269746D617032010000424D320100000000000036000000280000000900
+      0000090000000100180000000000FC0000000000000000000000000000000000
+      0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFF
+      FFFFFFFFFFFFFF000000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
+      000000000000000000FFFFFFFFFFFFFFFFFFFFFFFF00FFFFFF00000000000000
+      0000000000000000FFFFFFFFFFFFFFFFFF00FFFFFF000000000000FFFFFF0000
+      00000000000000FFFFFFFFFFFF00FFFFFF000000FFFFFFFFFFFFFFFFFF000000
+      000000000000FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00000000
+      0000FFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF000000FFFF
+      FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00
+    }
+  end
+  object imgFinish: TImage
+    Left = 312
+    Height = 25
+    Top = 128
+    Width = 73
+    AutoSize = True
+    OnClick = imgFinishClick
+    OnMouseDown = imgFinishMouseDown
+    OnMouseUp = imgFinishMouseUp
+    Transparent = True
+  end
+  object imgCancel: TImage
+    Left = 311
+    Height = 25
+    Top = 176
+    Width = 73
+    AutoSize = True
+    OnClick = imgCancelClick
+    OnMouseDown = imgCancelMouseDown
+    OnMouseUp = imgCancelMouseUp
+    Transparent = True
+  end
+  object EInstallPath: TTransEdit
+    Left = 24
+    Height = 18
+    Top = 40
+    Width = 392
+    SelectionBrush.Color = clBlue
+    BackBMP.Data = {
+      07544269746D617036000000424D360000000000000036000000280000000000
+      0000000000000100180000000000000000006400000064000000000000000000
+      0000
+    }
+    OnKeyPress = EInstallPathKeyPress
+    HideSelection = True
+    BorderStyle = bsNone
+    Color = clWhite
+    ScrollBars = ssNone
+    Lines.Strings = (
+      'EInstallPath'
+    )
+  end
+  object VET: TShellTreeView
+    Left = 24
+    Height = 72
+    Top = 72
+    Width = 249
+    BorderStyle = bsNone
+    FileSortType = fstNone
+    TabOrder = 1
+    ObjectTypes = [otFolders]
+    ShellListView = VECombobox
+  end
+  object VECombobox: TShellListView
+    Left = 24
+    Height = 80
+    Top = 152
+    Width = 249
+    Color = clDefault
+    Constraints.MinHeight = 21
+    TabOrder = 2
+    ViewStyle = vsReport
+    OnChange = VEComboboxChange
+    ObjectTypes = [otNonFolders]
+    Root = '/'
+    ShellTreeView = VET
+  end
+  object StartTimer: TTimer
+    Enabled = False
+    Interval = 500
+    OnTimer = StartTimerTimer
+    left = 352
+    top = 24
+  end
+  object ChkImg: TTimer
+    Interval = 50
+    OnTimer = ChkImgTimer
+  end
+end

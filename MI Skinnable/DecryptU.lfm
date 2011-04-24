@@ -1,0 +1,40 @@
+object frmDecrypt: TfrmDecrypt
+  Left = 268
+  Height = 52
+  Top = 181
+  Width = 307
+  ActiveControl = Panel1
+  BorderStyle = bsNone
+  Caption = 'frmDecrypt'
+  ClientHeight = 52
+  ClientWidth = 307
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnCreate = FormCreate
+  Position = poScreenCenter
+  LCLVersion = '0.9.30'
+  object Panel1: TPanel
+    Left = 0
+    Height = 49
+    Top = 0
+    Width = 299
+    ClientHeight = 49
+    ClientWidth = 299
+    TabOrder = 0
+    object lblDecrypt: TLabel
+      Left = 8
+      Height = 15
+      Top = 8
+      Width = 74
+      Caption = 'Decrypting...'
+      ParentColor = False
+    end
+    object ProgressBar: TProgressBar
+      Left = 8
+      Height = 17
+      Top = 24
+      Width = 283
+      TabOrder = 0
+    end
+  end
+end

@@ -1,0 +1,79 @@
+object frmNFO: TfrmNFO
+  Left = 226
+  Height = 398
+  Top = 265
+  Width = 574
+  BorderStyle = bsNone
+  Caption = 'frmNFO'
+  ClientHeight = 398
+  ClientWidth = 574
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  Position = poScreenCenter
+  LCLVersion = '0.9.30'
+  object ImgNFO: TImage
+    Left = 0
+    Height = 400
+    Top = 0
+    Width = 575
+    AutoSize = True
+    OnMouseDown = ImgNFOMouseDown
+  end
+  object imgClose: TImage
+    Left = 336
+    Height = 33
+    Top = 8
+    Width = 65
+    AutoSize = True
+    OnClick = imgCloseClick
+    OnMouseDown = imgCloseMouseDown
+    OnMouseUp = imgCloseMouseUp
+    Transparent = True
+  end
+  object RichViewNFO: TRichView
+    Left = 29
+    Height = 290
+    Top = 45
+    Width = 510
+    TabStop = True
+    TabOrder = 0
+    Tracking = True
+    VScrollVisible = True
+    PopupMenu = PopupMenuNfo
+    OnKeyPress = RichViewNFOKeyPress
+    FirstJumpNo = 0
+    OnJump = RichViewNFOJump
+    MaxTextWidth = 0
+    MinTextWidth = 0
+    LeftMargin = 5
+    RightMargin = 5
+    BackgroundStyle = bsNoBitmap
+    Delimiters = ' .;,:(){}"'
+    AllowSelection = True
+    SingleClick = False
+  end
+  object ChkImg: TTimer
+    Enabled = False
+    Interval = 50
+    OnTimer = ChkImgTimer
+    left = 24
+  end
+  object PopupMenuNfo: TPopupMenu
+    OnPopup = PopupMenuNfoPopup
+    left = 824
+    top = 320
+    object mnuNfoSelectAll: TMenuItem
+      Caption = 'Select all'
+      OnClick = mnuNfoSelectAllClick
+    end
+    object mnuNfoCopy: TMenuItem
+      Caption = 'Copy'
+      OnClick = mnuNfoCopyClick
+    end
+  end
+end

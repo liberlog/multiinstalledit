@@ -1,0 +1,158 @@
+object frmUnpack: TfrmUnpack
+  Left = 327
+  Height = 293
+  Top = 111
+  Width = 507
+  BorderStyle = bsNone
+  Caption = 'frmUnpack'
+  ClientHeight = 293
+  ClientWidth = 507
+  Color = clBtnFace
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  OnActivate = FormActivate
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
+  OnShow = FormShow
+  Position = poScreenCenter
+  LCLVersion = '0.9.30'
+  object imgUnpack: TImage
+    Left = 0
+    Height = 217
+    Top = 0
+    Width = 426
+    AutoSize = True
+  end
+  object lblBytes: TLabel
+    Left = 24
+    Height = 15
+    Top = 76
+    Width = 46
+    Caption = 'lblBytes'
+    ParentColor = False
+  end
+  object lblCurrentFileLabel: TLabel
+    Left = 24
+    Height = 15
+    Top = 38
+    Width = 69
+    Caption = 'Current file:'
+    ParentColor = False
+  end
+  object lblAllFilesLabel: TLabel
+    Left = 24
+    Height = 15
+    Top = 102
+    Width = 85
+    Caption = 'Total progress '
+    ParentColor = False
+  end
+  object lblTotalMB: TLabel
+    Left = 24
+    Height = 15
+    Top = 140
+    Width = 54
+    Caption = 'MB of MB'
+    ParentColor = False
+  end
+  object lblLabelElapsedTime: TLabel
+    Left = 234
+    Height = 15
+    Top = 140
+    Width = 74
+    Caption = 'Elapsed time'
+    ParentColor = False
+  end
+  object lblLabelEstimatedTime: TLabel
+    Left = 234
+    Height = 15
+    Top = 156
+    Width = 108
+    Caption = 'Estimated time left'
+    ParentColor = False
+  end
+  object lblEstiTime: TLabel
+    Left = 354
+    Height = 15
+    Top = 156
+    Width = 62
+    Caption = 'lblEstiTime'
+    ParentColor = False
+  end
+  object lblElapTime: TLabel
+    Left = 354
+    Height = 15
+    Top = 140
+    Width = 66
+    Caption = 'lblElapTime'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    Left = 347
+    Height = 15
+    Top = 140
+    Width = 5
+    Caption = ':'
+    ParentColor = False
+  end
+  object Label4: TLabel
+    Left = 347
+    Height = 15
+    Top = 156
+    Width = 5
+    Caption = ':'
+    ParentColor = False
+  end
+  object lblCurrentFile: TLabel
+    Left = 81
+    Height = 15
+    Top = 38
+    Width = 55
+    Caption = 'File name'
+    ParentColor = False
+  end
+  object lblUnpackTitle: TLabel
+    Left = 24
+    Height = 24
+    Top = 12
+    Width = 134
+    Caption = 'lblUnpackTitle'
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    ParentColor = False
+    ParentFont = False
+  end
+  object Gauge2: TProgressBar
+    Left = 24
+    Height = 15
+    Top = 120
+    Width = 372
+    TabOrder = 0
+  end
+  object Gauge1: TProgressBar
+    Left = 24
+    Height = 15
+    Top = 56
+    Width = 372
+    TabOrder = 1
+  end
+  object imgCancel: TImage
+    Left = 176
+    Height = 25
+    Top = 176
+    Width = 73
+    AutoSize = True
+    OnClick = imgCancelClick
+    OnMouseDown = imgCancelMouseDown
+    OnMouseUp = imgCancelMouseUp
+    Transparent = True
+  end
+  object ChkImg: TTimer
+    Enabled = False
+    Interval = 50
+    OnTimer = ChkImgTimer
+  end
+end
